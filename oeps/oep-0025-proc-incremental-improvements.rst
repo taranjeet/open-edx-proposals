@@ -34,7 +34,7 @@ development tasks.
 Motivation
 ==========
 
-There are often relatively straightforward changes to the Open edX code base
+There are often relatively straightforward changes to the Open edX codebase
 which prove difficult to accomplish due to the sheer amount of code involved.
 These are not major new features or complex refactorings of the code, but
 rather things like:
@@ -55,15 +55,15 @@ Specification
 =============
 
 The `Incremental Improvements`_ (INCR) JIRA project is home to small,
-straightforward development tasks which must be finished in order to achieve
+straightforward tasks which must be finished in order to achieve
 larger, long-term objectives of the Open edX community. All tickets in it
 should have the following characteristics:
 
-* **Quick to implement.** Ideally no more than 3 hours for a developer who is
-  already familiar with the contribution process to submit a reasonable pull
-  request.
+* **Quick to implement.** Ideally no more than 3 hours for a contributor who
+  is already familiar with the contribution process to submit a reasonable
+  pull request.
 
-* **Small in scope.** Should affect no more than 10 files (preferably fewer),
+* **Small in scope.** Should not affect significantly more than 10 files,
   and not require large amounts of new or refactored code. If a similar change
   needs to be made to dozens or hundreds of files, there should be a separate
   ticket for each small batch of files (and there should ideally be a script
@@ -74,23 +74,23 @@ should have the following characteristics:
   waiting for another change to be made.
 
 * **Not urgent.** While all INCR tickets are important, they do not have
-  pressing deadlines. A new developer should have time to become familiar with
-  the contribution process and the changes to be made, without feeling
+  pressing deadlines. A new contributor should have time to become familiar
+  with the contribution process and the changes to be made, without feeling
   pressured to submit something quickly.
 
 * **Requires no additional information or clarification.** The ticket
   description should clearly describe exactly what needs to be done.
 
 * **Specifies the required skill(s).** There should be labels on the ticket
-  listing any development skills required beyond the core ones needed to
-  submit a pull request. Typical labels include "javascript", "python", "css",
-  etc.
+  listing any skills required beyond the core ones needed to submit a pull
+  request. Typical labels include "javascript", "python", "css", etc.
 
 * **Does not require knowledge of the existing Open edX code.** All INCR
-  tickets should be implementable by a developer with the appropriate
+  tickets should be implementable by a contributor with the appropriate
   fundamental skills, and described assuming little or no knowledge of the
-  existing code. It can be assumed that the developer has read enough
-  documentation to start a devstack and understand the contribution process.
+  existing Open edX codebase. It can be assumed that the contributor has read
+  enough documentation to start a devstack and understand the contribution
+  process.
 
 * **Not controversial.** If the instructions in the description are followed,
   it should be feasible to promptly review and merge the changes without
@@ -128,7 +128,7 @@ linked to the tickets which are blocking progress.
 Who Can Work on INCR Tickets?
 -----------------------------
 
-Incremental Improvement tickets are appropriate for many kinds of developers,
+Incremental Improvement tickets are appropriate for many kinds of contributors,
 including (but not limited to):
 
 * Developers who have an idea for a larger Open edX contribution, and want to
@@ -144,6 +144,9 @@ including (but not limited to):
   small chunk of available time
 
 * Hackathon teams who want to make a burst of progress on a big objective
+
+* Technical writers who want to make gradual small improvements to the Open
+  edX documentation.
 
 When enough of an epic is complete that the scope of remaining work
 becomes more manageable (or when an external deadline like end of support for
@@ -194,12 +197,12 @@ spectrum of community members and make meaningful progress towards larger
 shared objectives.  The hope is that this will enable all of the following:
 
 * Faster progress on large upgrade projects by distributing the work across
-  more developers
+  more contributors
 
-* A clearer path for new Open edX developers to get started making useful
+* A clearer path for new Open edX contributors to get started making useful
   contributions
 
-* A simpler, cleaner code base by allowing more developers to make progress
+* A simpler, cleaner codebase by allowing more developers to make progress
   on cleaning up old messes and deprecated code patterns
 
 Rejected Alternatives
