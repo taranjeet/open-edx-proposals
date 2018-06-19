@@ -120,10 +120,10 @@ will ultimately belong to an INCR epic when it is first created.  It is
 usually sufficient to initially create just a handful of tickets that allow
 several developers with any appropriate skill sets to contribute.  More should
 be written as the tasks are completed, so there is always something available
-to work on for those interested in contributing.  And some tasks which
-initially didn't qualify as INCR tickets because they depended on other work
-being finished first may be added to the epic as those pre-requisite tasks are
-completed.
+to work on for those interested in contributing.  Tasks which depend on other
+work being finished first but otherwise qualify as INCR tickets may be created
+as such, but should immediately have their status marked as ``Blocked`` and be
+linked to the tickets which are blocking progress.
 
 Who Can Work on INCR Tickets?
 -----------------------------
@@ -145,7 +145,7 @@ including (but not limited to):
 
 * Hackathon teams who want to make a burst of progress on a big objective
 
-When enough of an epic is complete that the scope of remaining remaining work
+When enough of an epic is complete that the scope of remaining work
 becomes more manageable (or when an external deadline like end of support for
 a current dependency approaches), one or more organizations in the community
 may decide that it's worth making that epic a higher priority, assigning even
