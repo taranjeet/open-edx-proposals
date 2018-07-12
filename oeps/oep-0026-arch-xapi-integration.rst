@@ -116,10 +116,10 @@ The Statement API has essentially the following parts: `xAPI Actor`_, `xAPI Verb
 xAPI Actor
 ~~~~~~~~~~
 Although the **Actor** field can be either an *Agent* or a *Group*, we will primarily
-support only the *Agent* type, which is used for individuals performing an action (**Verb** 
-on **Object**).
+support only the *Agent* type, which is used for individuals performing an activity
+(`xAPI Verb`_ on an `xAPI Object`_).
 
-An Actor can be identified using a `Friend of a Friend (FOAF)`_ vocabulary with either:
+An Actor can be identified using `Friend of a Friend (FOAF)`_ vocabulary with either:
 (1) `email address`_, (2) `hash of email address`_, (3) `OpenID URI`_, or (4) `account`_
 with a *homepage*-scoped identifier.  One of these is sent along with the Actor's "name".
 To be mindful of learner privacy, we will initially take a conservative approach
@@ -227,7 +227,7 @@ xAPI Object
 
 Initially, the **Object** in an Open edX xAPI event will be an xAPI *Activity*, which is
 uniquely defined by a URI. (In the future, we may expand Objects to also be Actors in case
-of social interactions, and Statements in case of *voiding*.)
+of *social interactions*, and Statements in case of *voiding*.)
 
 The **id** field is a unique identifier. The `Open edX Events`_ section has specifics on
 which Open edX identifier is used in each event.
@@ -337,7 +337,7 @@ engines. This ensures an end-to-end integration that can be maintained going for
 **Note**: Although xAPI specifies a standardized format, it is a low-level transaction
 schema and relies on higher-level "profiles" applied on top of it. So the profiles
 for specific Activities, Verbs, Contexts, etc used by Open edX need to be contractually
-supported.
+maintained.
  
 Router
 ~~~~~~
@@ -349,13 +349,13 @@ of access to activities.
 
 For the first iteration, we need the following permissions:
 
-* Course restriction - certain consumers can access events only in certain courses.
+* **Course restriction** - certain consumers can access events only in certain courses.
 
 In the future, we may need the following:
 
-* User restriction - certain consumers can access all events for certain users.
-* Site restriction - certain consumers are limited to accessing events of certain sites.
-* Activity type restriction - certain consumers can access only certain types of events.
+* **User restriction** - certain consumers can access all events for certain users.
+* **Site restriction** - certain consumers are limited to accessing events of certain sites.
+* **Activity type restriction** - certain consumers can access only certain types of events.
 
 Admin
 ~~~~~
@@ -387,8 +387,8 @@ Decisions & Consequences
 
 * **Emphasis on user privacy** - We are initially taking a conservative approach by
   minimizing the PII that is sent to xAPI consumers. The trade-off is that consumers
-  may find the received user data limiting. However, at this time, it's unclear whether
-  adaptive engines, which are written generically for all users, really need PII to
+  may find the received user identifiers limiting. However, at this time, it's unclear
+  whether adaptive engines, which are written generically for all users, need PII to
   be effective. They need the ability to bind events together and track pathways and
   progress for users, but they can do so with any unique identifier - hence the
   introduction of the `Open edX User UUID`_.
@@ -397,6 +397,15 @@ Decisions & Consequences
   to access data for their users. For those use cases, sharing PII may be required.
   We have chosen to keep those use cases in mind, but not target them initially, with
   the understanding that future work would be needed to address those needs.
+
+* **Deferring implementation of an LRS** - As mentioned above, we are consciously
+  postponing implementation of an Open edX specific LRS at this time. Although the
+  need for an LRS may be forthcoming, this initial iteration defers this work.
+
+  As a consequence, adaptive engines may need to maintain their own LRS if they need
+  to refer back to previous events. Given our business research to date, it seems
+  many adaptive engines are already maintaining their own custom-optimized storage
+  of event data.
 
 .. _IMS Global: https://www.imsglobal.org/
 .. _Caliper Sensor APIs: https://www.imsglobal.org/caliper-analytics-v1-public-repos-sensor-apis
