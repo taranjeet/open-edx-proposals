@@ -123,8 +123,8 @@ An Actor can be identified using `Friend of a Friend (FOAF)`_ vocabulary with ei
 (1) `email address`_, (2) `hash of email address`_, (3) `OpenID URI`_, or (4) `account`_
 with a *homepage*-scoped identifier.  One of these is sent along with the Actor's "name".
 To be mindful of learner privacy, we will initially take a conservative approach
-and only send #3, with an Open edX randomly generated unique identifier of the learner
-(`Open edX User UUID`_).
+and only send #3, with an Open edX anonmyzed unique identifier of the learner
+(`Anonymized User ID`_).
 
 In the future, if certain external systems require `Personally Identifiable Information
 (PII)`_, like the learner's email address or name, then those may be conditionally sent
@@ -132,13 +132,13 @@ with appropriate permissions. Adaptive engines, however, do not need PII.
 
 Initially, we will exclude the "name" field. However, if we find that xAPI JSON parsers
 assume this field always exists, then we can include the field but provide a non-PII
-value, such as a copy of the `Open edX User UUID`_.
+value, such as a copy of the `Anonymized User ID`_.
 
-Open edX User UUID
+Anonymized User ID
 ^^^^^^^^^^^^^^^^^^
-An *Open edX User UUID* identifier currently doesn't exist in the platform. It will need 
-to be added as part of implementing xAPI support. There would be a 1:1 mapping between
-a randomly generated UUID_ and a row in the Django User table in the Open edX LMS.
+An *Anonymized User ID* will be generated as a SHA-256 hash of the Open edX user_id, 
+which is the **id** value of the user's row in the `Django auth_user`_ table in the
+Open edX LMS.
 
 As mentioned in `Using consistent user identifiers in Segment events`_, the other user
 identifiers in the Open edX platform aren't perfectly suited for inclusion in externally
@@ -159,6 +159,8 @@ sent events:
    * - anonmyous user_id
      - It is currently constructed by hasing the user's LMS user_id with the Django
        server's *SECRET_KEY* value. This value will change when the *SECRET_KEY* is rotated.
+
+.. _Django auth_user: https://docs.djangoproject.com/en/2.0/topics/auth/default/#user-objects
 
 Example
 ^^^^^^^
@@ -181,7 +183,6 @@ See `Deep Dive: Actor/Agent`_ for more information on xAPI Actors.
 .. _OpenID URI: http://xmlns.com/foaf/spec/#term_openid
 .. _account: http://xmlns.com/foaf/spec/#term_account
 .. _Personally Identifiable Information (PII): https://en.wikipedia.org/wiki/Personally_identifiable_information
-.. _UUID: http://tools.ietf.org/html/rfc4122
 .. _Using consistent user identifiers in Segment events: https://openedx.atlassian.net/wiki/spaces/AN/pages/144441849/Using+consistent+user+identifiers+in+Segment+events
 .. _`Deep Dive: Actor/Agent`: https://xapi.com/deep-dive-actor-agent/
 
@@ -391,7 +392,7 @@ Decisions & Consequences
   whether adaptive engines, which are written generically for all users, need PII to
   be effective. They need the ability to bind events together and track pathways and
   progress for users, but they can do so with any unique identifier - hence the
-  introduction of the `Open edX User UUID`_.
+  introduction of the `Anonymized User ID`_.
 
   Enterprises and other organizations may want to use this xAPI integration framework
   to access data for their users. For those use cases, sharing PII may be required.
