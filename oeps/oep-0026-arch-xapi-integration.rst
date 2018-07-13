@@ -95,9 +95,9 @@ for many different purposes, it can be used to train adaptive engines as shown i
 diagram below.
 
 .. image:: oep-0026/adaptive_learning_lrs_basic.png
-   :alt: The diagram above is enhanced with a new LRS component that is sent events
-    (write requests) and accessed by adaptive engines (read requests) for training
-    purposes, using xAPI for both read and write.
+   :alt: The diagram above is enhanced with a new LRS component that receives events
+    from the Open edX "Eventing" component and is accessed by adaptive engines for
+    training purposes, using xAPI for both transactions.
 
 In the short term, however, we will not implement our own LRS since the initial integration
 efforts do not require this (as shown in the first diagram above).
