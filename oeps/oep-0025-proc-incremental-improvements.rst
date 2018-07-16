@@ -154,6 +154,31 @@ a current dependency approaches), one or more organizations in the community
 may decide that it's worth making that epic a higher priority, assigning even
 more developers to work on INCR tickets.
 
+INCR Ticket Workflow
+--------------------
+
+Once the contributor is ready to submit their changes, the process will
+typically go roughly as follows:
+
+1. The contributor creates a Pull Request (PR) against the appropriate Open
+   edX GitHub repository, mentioning the INCR ticket number in the title.
+   This associates the PR with the INCR ticket.
+
+2. As with any pull request contributed by the Open edX community, an `OSPR`_
+   ticket will be automatically created to track the pull request's
+   status.  This will be assigned to a reviewer (often the author of the
+   INCR ticket).
+
+3. The reviewer will provide feedback on the PR as promptly as feasible.
+   The tickets are designed for the changes to be easy to review, so this
+   should usually take no more than a few business days.
+
+4. Once tests are passing, all of the reviewer's concerns have been addressed,
+   and a signed contributor agreement has been received, the reviewer will
+   merge the PR and close the INCR ticket.
+
+.. _OSPR: https://openedx.atlassian.net/wiki/spaces/OPEN/pages/679772558/OSPR+Workflow+process
+
 How Should Related Non-INCR Work Be Coordinated?
 ------------------------------------------------
 
