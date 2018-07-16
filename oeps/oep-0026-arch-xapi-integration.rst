@@ -123,7 +123,7 @@ An Actor can be identified using `Friend of a Friend (FOAF)`_ vocabulary with ei
 (1) `email address`_, (2) `hash of email address`_, (3) `OpenID URI`_, or (4) `account`_
 with a *homepage*-scoped identifier.  One of these is sent along with the Actor's "name".
 To be mindful of learner privacy, we will initially take a conservative approach
-and only send #3, with an Open edX anonmyzed unique identifier of the learner
+and only send #3, with an Open edX anonymized unique identifier of the learner
 (`Anonymized User ID`_).
 
 In the future, if certain external systems require `Personally Identifiable Information
@@ -156,8 +156,8 @@ sent events:
        to implementation of the housing database.
    * - email address
      - Is PII and modifiable by the user.
-   * - anonmyous user_id
-     - It is currently constructed by hasing the user's LMS user_id with the Django
+   * - anonymous user_id
+     - It is currently constructed by hashing the user's LMS user_id with the Django
        server's *SECRET_KEY* value. This value will change when the *SECRET_KEY* is rotated.
 
 .. _Django auth_user: https://docs.djangoproject.com/en/2.0/topics/auth/default/#user-objects
@@ -319,7 +319,7 @@ that:
 Translator
 ~~~~~~~~~~
 
-This layer will plug into the `Open edX Event Tracking`_ subsystem to listen to
+This component will plug into the `Open edX Event Tracking`_ subsystem to listen to
 events of interest and translate them to xAPI's JSON format.
 
 TBD - The development team will assess whether we should use (and start owning)
@@ -328,7 +328,7 @@ the already implemented (but no longer maintained) `xAPI Python Open Source Libr
 Validator
 ~~~~~~~~~
 
-The intention of this validation layer is to ensure we continue to support the
+The intention of this validation component is to ensure we continue to support the
 expected xAPI formats by all participating Open edX xAPI consumers. In many ways,
 this is similar to what `consumer-driven contract testing`_ would enable and uses
 similar design principles. Essentially, a common validation library can be
@@ -343,8 +343,8 @@ maintained.
 Router
 ~~~~~~
 
-The router layer forwards xAPI events to interested consumers.  The complexity of this
-layer may increase over time as we support higher degrees of customization by consumers,
+The router forwards xAPI events to interested consumers.  The complexity of this
+component may increase over time as we support higher degrees of customization by consumers,
 such as filtering for only certain types of events and varying degrees of permissions
 of access to activities.
 
@@ -361,7 +361,7 @@ In the future, we may need the following:
 Admin
 ~~~~~
 
-The administration layer is responsible for allowing the Open edX site administrator
+The administration component is responsible for allowing the Open edX site administrator
 to configure the list and permissions of registered xAPI event consumers.
 
 Eventually, the registry of consumers may become a self-service portal where consumers
