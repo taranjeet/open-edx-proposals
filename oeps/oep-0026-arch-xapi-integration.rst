@@ -171,8 +171,8 @@ Here is an example of an **Actor** JSON value that we would generate:
 
     "actor": {
         “objectType”: “Agent”,
-        “openid”: “https://users.openedx.org/1234567890”,
-        "name": “https://users.openedx.org/1234567890”  # only include this field if necessary
+        “openid”: “openedx.org/users/user-v1:<anonymized-user-id>”,
+        "name": “openedx.org/users/user-v1:<anonymized-user-id>”  # only include this field if necessary
     }
 
 See `Deep Dive: Actor/Agent`_ for more information on xAPI Actors.
@@ -267,11 +267,11 @@ Here is an example of a **Context** JSON value that we would generate:
 ::
 
     "context": {
-        "registration": "https://api.openedx.org/enrollments/xyz",
+        "registration": "openedx.org/enrollments/enrollment-v1:<anonymized-enrollment-id>",
         "contextActivities": {
             “parent”: [{
                 “objectType”: “Activity”,
-                “id”: “https://api.openedx.org/courses/course-v1:openedx+origami-folding+1T2018"
+                “id”: “https://openedx.org/courses/course-v1:openedx+origami-folding+1T2018"
             }]
         }
     }
