@@ -199,6 +199,7 @@ ourselves to only URIs prefixed by the following domains, in the following prior
 order (in case of conflicting names):
 
 * http://adlnet.gov
+* http://w3id.org
 * http://id.tincanapi.com
 
 If, by any chance, a verb needed by Open edX does not exist in the registry, then we
