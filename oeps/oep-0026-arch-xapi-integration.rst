@@ -419,6 +419,9 @@ Open edX Events
 Currently, the Open edX system supports and maintains events that are sent to tracking
 logs, as described in `Tracking Log Events`_.
 
+Prioritized List of Events
+==========================
+
 For this first iteration, we will focus primarily on the following events:
 
 - **Enrollment events**
@@ -428,28 +431,21 @@ For this first iteration, we will focus primarily on the following events:
   + `edx.course.enrollment.deactivated <http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#edx-course-enrollment-activated-and-edx-course-enrollment-deactivated>`_.
        Whenever a learner unenrolls from a course.
 
-- **Grade events**
-
-  + `edx.grades.course.grade_calculated <http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/course_team_event_types.html#edx-grades-course-grade-calculated>`_.
-      Whenever a learner's course grade is updated.
-  + `edx.grades.subsection.grade_calculated <http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/course_team_event_types.html#edx-grades-subsection-grade-calculated>`_.
-      Whenever a learner's subsection grade is updated.
-  + `edx.grades.problem.submitted <http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/course_team_event_types.html#edx-grades-problem-submitted>`_.
-      Whenever a learner submits any problem.
-
 - **Problem interaction events**
 
+  + `edx.grades.problem.submitted <http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/course_team_event_types.html#edx-grades-problem-submitted>`_.
+      Whenever a learner submits any problem.
   + `problem_check <http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#problem-check>`_.
        Whenever a learner's answer to a problem is checked.
   + `showanswer <http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#showanswer>`_.
        Whenever a learner is shown the answer to a problem.
-  + `edx.problem.hint.feedback_displayed <http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#edx-problem-hint-feedback-displayed>`_.
-       Whenever a learner submits a problem and feedback is presented.
   + `edx.problem.hint.demandhint_displayed <http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#edx-problem-hint-demandhint-displayed>`_.
        Whenever a learner requests a hint to a problem.
 
 - **Video events**
 
+  + `edx.video.loaded <http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#load-video-edx-video-loaded>`_.
+       Whenever a learner loads a video.
   + `edx.video.played <http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#play-video-edx-video-played>`_.
        Whenever a learner plays a video.
   + `edx.video.stopped <http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/student_event_types.html#stop-video-edx-video-stopped>`_.
@@ -474,11 +470,14 @@ For this first iteration, we will focus primarily on the following events:
 
 .. _Tracking Log Events: http://edx.readthedocs.io/projects/devdata/en/latest/internal_data_formats/tracking_logs/index.html
 
-**TODO** - TBD - Provide a mapping between the above Open edX events and their equivalent Open edX xAPI formats.
+Event Field Mapping
+===================
+
+Please see the `Open edx xAPI Events`_ document for a detailed view of the mapping
+between the above Open edX events and their equivalent Open edX xAPI formats.
+
+.. _Open edx xAPI Events: https://docs.google.com/spreadsheets/d/1Qx-1NkpCHXkWh8AagwHD5vzyBCdRXQVof10Ent_EDms/edit?usp=sharing
 
 Open Questions
 --------------
-* Which URNs to use for registration (enrollment), catalog course, course run, block, etc?
-* Interaction types - need to map for CAPA problems: https://github.com/adlnet/xAPI-Spec/blob/master/xAPI-Data.md#interaction-activities
-* Is the http://adlnet.gov/expapi/activities/course a Catalog course or a course run?
 * Shall we use OAuth Scopes for Permissions?
