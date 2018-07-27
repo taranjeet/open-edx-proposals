@@ -9,8 +9,9 @@ OEP-0019: Developer Documentation
 +-----------------+--------------------------------------------------------+
 | Last Modified   | 2018-04-26                                             |
 +-----------------+--------------------------------------------------------+
-| Authors         | Grant Goodman                                          |
-|                 | Robert Raposa                                          |
+| Authors         | Grant Goodman,                                         |
+|                 | Robert Raposa,                                         |
+|                 | Nimisha Asthagiri                                      |
 +-----------------+--------------------------------------------------------+
 | Arbiter         | Albert (AJ) St. Aubin <astaubin@edx.org>               |
 +-----------------+--------------------------------------------------------+
@@ -30,269 +31,183 @@ OEP-0019: Developer Documentation
    :local:
    :depth: 2
 
-*****************
-IN PROGRESS NOTES
-*****************
-
-The following section is a set of assorted notes for developing this OEP. This entire section should no longer exist at
-some point.  Definitely before accepting, and also potentially before full review.
-
-============================
-General Questions / Comments
-============================
-
-* This OEP might want to be broken down into more than one rST file.  One section of the OEP could include future ideas
-  for the OEP, since we don't know everything, but we want to land what we do know.
-
-   * Note that everything beyond the "IN PROGRESS NOTES" section is still fair game for adjustments. We may not want to
-     follow the full initial OEP format for this particular OEP.
-
-* Nimisha has notes on developer documentation in `this slide in the Architecture Onboarding Presentation`_.
-
-    * [Robert] EdX Courses for learning is probably beyond the scope of this first OEP.
-
-* Nate/Nimisha tested exchanging draw.io diagrams via XML and VSDX which are sharable via github.  However, we are
-  still using LucidChart. This is an interesting idea that shouldn't get lost, but premature for commitment in this
-  OEP.
-
-* From Nate:
-
-   * Idea: use `Algolia`_ to search ALL of these resources including edx-code, openedx-operations  Slack archive
-     and Confluence. Algolia is `free for open source projects`_.
-
-      * [Robert] We have no story for documentation discovery and I think this is wildly important, so I'd like to see
-        this topic addresses in the OEP, even if it just mentions this as a next step.
-
-   * Issue: http://docs.edx.org/ is missing ecommerce docs. Not for the OEP, but where/how do we track doc issues?
-
-* Where should we host a TOC/Index of our docs?
-
-  * Nate got a `draft TOC started here`_.
-
-  * We discussed having a developer-docs repo, and oeps could move here (and we could remove the open-edx-proposals
-    repo).
-
-  * Here is another `Developer Documentation landing page`_ in Confluence.
-
-* Where should documentation live?
-
-   * Possible docs directory per Django App (in addition to per repository).  This was used for oauth_dispatch decisions
-     in edx-platform. This may need some automation/tooling to make this more useful (automated publishing, etc.)
-
-   * OEP vs decision doc.  Just differs in scope?
-
-   * Do we need a README.rst for each Django App? Does it need to live in the root (my preference).  Does it just point
-     to the docs directory when needed?  Do docs directories need a README as well?  An index?
-
-   * Can someone add general docs to an __init__.py file?  Should this be moved to a README ([Robert's] preference).
-
-* Searching for `Developer Documentation in Confluence`_, what should be migrated to this OEP or discussed in this OEP?
-
-   * Example is `Documentation Best Practices page`_ in Confluence.
-
-   * There is a child page in Confluence tracking a `Best Practices and Docs TODO List`_.
-
-      * Should we document a process for tracking missing docs? How do we track doc issues that have come up? Examples:
-
-         * OLX docs are out of date and inaccurate. Could we get automate the process of updating these?
-
-         * In ReadTheDocs, the theme used does not make the current version (named release) of the documentation clear
-           enough. It is hard to tell when you are looking at the wrong version.
-
-         * Is there an issue with ReadTheDocs devstack documentation vs the devstack repo document?
-
-* Is Ops Documentation a special case that should not be covered by this OEP, or gets special coverage?
-
-   * When there is a new project, ensure there are docs on how to run it.
-
-* Swagger for API Documentation. Needs more automation. Could we have a staging environment against which the docs could
-  function and give you access to more than you might be able to in Production?
-
-* Community needs: How to open issues? How to update docs?
-
-.. _this slide in the Architecture Onboarding Presentation: https://docs.google.com/presentation/d/1X3QaSw4sqPLvkXBhC8phoFA7j8dhsL08MCZWwIDMIBE/edit#slide=id.g2f682183f6_0_0
-.. _Algolia: http://algolia.com/
-.. _free for open source projects: https://www.algolia.com/for-open-source
-.. _draft TOC started here: https://docs.google.com/document/d/11xm7JbBr0Q5MrX1lIClyOTqI-_9sqB2h_gJOfCXo9s8/edit?usp=sharing
-.. _Developer Documentation landing page: https://openedx.atlassian.net/wiki/spaces/OpenDev/pages/159881063/Developer+Documentation
-.. _Developer Documentation in Confluence: https://openedx.atlassian.net/wiki/dosearchsite.action?queryString=deverloper%20documentation
-.. _Documentation Best Practices page: https://openedx.atlassian.net/wiki/spaces/OpenDev/pages/297861141/Documentation+Best+Practices
-.. _Best Practices and Docs TODO List: https://openedx.atlassian.net/wiki/spaces/OpenDev/pages/161888472/Best+Practices+and+Docs+TODO+List
-
-========================
-rST Questions / Comments
-========================
-
-* rST Formatting Questions:
-
-   * [Robert] I like the header format that Nimisha uses elsewhere that just uses an underline, rather than a line above
-      and below. I think it has more overhead to do above and below, but I think the doc team uses this. Could we update
-      templates to match our preference?
-
-   * Do we need to keep to 80 characters per line? What tools will make this easy?
-
-      * Could try `Insert Break After Wrapping Width 80 characters in Sublime Text 3`_
-
-* What tools can help with rST?
-
-   * PyCharm under development will have features, but it is broken for other reasons.
-
-   * Nimisha uses VisualStudio Code - `Restructured Text Previewer`_.
-
-   * `Online reStructured Text editor`_
-
-   * `Online table generator`_ (supports multiple formats)
-
-   * `Pandoc`_ (a universal document converter).  This can be used to convert between many formats, like Google Doc to
-      rST.
-
-     code::
-
-         pandoc example_source.docx -f docx -t rst -s -o example_output.rst
-
-   * Note: It looks like I got a section like this started below.
-
-.. _Insert Break After Wrapping Width 80 characters in Sublime Text 3: https://stackoverflow.com/questions/32362277/insert-break-after-wrapping-width-80-characters-in-sublime-text-3
-.. _Restructured Text Previewer: https://marketplace.visualstudio.com/items?itemName=tht13.rst-vscode
-.. _Online reStructured Text editor: http://rst.ninjs.org/
-.. _Online table generator: http://truben.no/table/
-.. _Pandoc: https://pandoc.org/
-
-********
-Abstract
-********
+Context
+-------
 
 Developers who work on the Open edX platform, both inside and outside of edX,
 need accurate and current documentation about platform architecture, APIs, and
 development best practices.
 
-**********
-Motivation
-**********
-
 Developer documentation has been inconsistently and in some cases poorly
 maintained. Documents exist on ReadTheDocs (RTD), in repositories on GitHub,
 in Confluence, and in Google Docs. Documents are also difficult to find.
 
-*************
-Specification
-*************
+This proposal focuses on long-term developer "Documentation" needs and does not
+concern itself with any transitory “Notes” that a development team may use for
+project management, brainstorming, meeting notes, etc.  We also distinguish
+"Documentation" from any useful code "Comments" that a developer may choose
+to add to clarify or add rationale to a local code segment. "Comments" are also
+out of scope of this OEP.
 
-===========================
-Documentation Format in rST
-===========================
+Decisions
+---------
 
-Documentation that is added to a Git repository will use the reStructuredText
-(rST) format.
+.. image:: oep-0019/developer_docs.png
+   :alt: A diagram that shows the different types of documentation and their
+    relationships.  This is further described below.
 
-=======================
-rST Tools and Resources
-=======================
+Agile Documentation Needs
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* `reStructuredText (rST) Primer`_
+With Agile development and Clean Code, we can minimize over-documentation since
+code should be readable and self-documenting. Where we do still need developer
+documentation is:
 
-* `Online rST editor`_
+1. **Decision Records** to understand the rationale behind the code and the
+   evolution of its perceived tech debt.
 
-* `Pandoc: a command line converter to and from rST`_
+   * These will be captured in either: (1) the `open-edx-proposals repo`_ for
+     system-wide decisions or (2) in `local decisions`_ folders within local code
+     repos. The latter may exist in a top-level folder in a repo and also as a
+     subfolder of an individual Django app.
 
-* Blog post about `why rST over Markdown for documentation`_.
+2. **Diagrams** to provide a visual holistic perspective of the overall system 
+   or component with its boundaries, interconnections, and relationships.
 
-`reStructuredText (rST) Primer`: http://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
-`Online rST editor`: http://rst.ninjs.org/
-`Pandoc: a command line converter to and from rST`: https://pandoc.org/
-`why rST over Markdown for documentation`: http://ericholscher.com/blog/2016/mar/15/dont-use-markdown-for-technical-docs/
+   * These will be stored in Github co-located with the relevant code or text.
 
-======================
-Types of Documentation
-======================
+3. **How-To Documentation** with step-by-step instruction in enabling and using
+   a feature.
 
-We should distinguish between documentation that is strictly internal to edX
-operations and documentation that is helpful for any Open edX platform
-developers. Documentation for the Open edX platform should be maintained in the
-relevant Git repository, in RST format.
+   * These will be stored in Github co-located with the relevant code.
 
-==========================================
-Index of Developer Documentation Resources
-==========================================
+4. **API Documentation** with information on interfaces for integrating with or
+   enhancing the platform. These should be automatically generated, as possible.
+   Some examples are:
 
-Create a document that indexes all available documentation resources for
-developers. This will help users discover what's available and also help edX
-maintain and control the resources. Much of the information that would be
-included is on the Confluence
-`Developer Documentation<https://openedx.atlassian.net/wiki/spaces/OpenDev/pages/159881063/Developer+Documentation>`
-page.
+   * REST API interfaces will be automatically generated using Swagger_.
+   * The Open edX Learning Exchange (OLX) format should be automatically generated.
+   * Plugin interfaces (e.g., Proctoring tool) should be automatically generated
+     using Sphinx_.
 
-======================================
-Developer Best Practices Documentation
-======================================
+.. _open-edx-proposals repo: https://github.com/edx/open-edx-proposals
+.. _local decisions: https://github.com/edx/edx-platform/tree/master/openedx/core/djangoapps/oauth_dispatch/docs/decisions
+.. _Swagger: https://swagger.io/
+.. _Sphinx: http://www.sphinx-doc.org/en/master/
 
-Some developer best practices documentation is maintained in a RTD
-documentation titled
-:ref:`Open edX Developer’s Guide<http://edx.readthedocs.io/projects/edx-developer-guide/en/latest/>`.
-We need to determine the best location for this content and locate other
-related topics currently in Confluence that we should add to this
-documentation.
+Tools and Location
+~~~~~~~~~~~~~~~~~~
 
-==============
-API references
-==============
+The recommended tools and locations for developer documentation are described
+below, inlined with the requirements they meet.
 
-API reference documentation should be generated from code and maintained in the
-related repository. We need to determine the best method for generating and
-publishing API reference docs in the near future. At this point, it seems
-likely that using Swagger and publishing the API reference docs within the
-related repository will be the best approach.
+* **Discoverable**. Users must be able to find the documentation that is
+  relevant to their needs. This calls for a high-level index and search
+  mechanism for finding content. 
 
-*********
-Rationale
-*********
+  * **Search**. For the time-being, we will make use of Google and Github's
+    search functionality for finding content since all developer documentation
+    will be in Github.  Certain IDEs may also have good tools for searching. 
+    
+  * **Index**. In the future, we will invest time in a better indexing
+    tool to aggregate and structure the documentation. This OEP will be
+    updated with more information at that time.
 
-Developer documentation should aim to meet the following requirements.
 
-   * **Discoverable**. Users must be able to find the documentation that is
-     relevant to their needs.
-   * **Maintainable**. Writers, editors, and reviewers should be able to
-     create and modify documentation without too much effort. Anyone, inside
-     or outside of edX, should have the ability to contribute to documentation.
-   * **Version Controlled**. Documentation should be maintained under version
-     control, which also promotes orderly review of documentation.
+* **Maintainable**. Writers, editors, and reviewers should be able to
+  create and modify documentation without too much effort. Anyone, inside
+  or outside of edX, should have the ability to contribute to documentation.
 
-**********************
+  * **Co-located**. The closer the documentation lives with its corresponding
+    code, the more likely it will be kept up-to-date.
+
+    * Repo-specific documentation will live within a "docs" folder within
+      its repo. This includes local "decisions", "how-tos", and README.rst.
+      Documentation should not live within the code itself (e.g., an __init__.py
+      python file).
+    
+    * System-wide documentation will live within the "open-edx-proposals" repo.
+
+  * **Exported Diagrams**. In order to keep diagrams updated across time, they
+    will need to be exported from whichever tool they were created in, with the
+    exported version maintained in Github.
+    
+    * draw.io diagrams can be exported and imported as XML files.
+    * Lucidchart diagrams can be exported and imported as Visio (VDX) files.
+
+
+* **Version Controlled**. Documentation should be maintained under version
+  control in Github, for the following reasons:
+
+  * **Reviewed**. They will be properly reviewed as defined by that repo's
+    process.
+
+  * **Tagged**. They will be appropriately in-synch with its corresponding
+    code. So when an open edX instance is running a specific named release,
+    they can refer to the matching documentation for that version of the
+    codebase.
+
+  * **Source Controlled**. All the other advantages of having source-control
+    backed files, including sharing across multiple developers and robust
+    storage.
+
+Format
+~~~~~~
+
+We will use `Restructured Text (RST)`_ for all developer documentation.
+
+Note: we are not embracing `Markdown (MD)`_.  Please see this blog post on
+`why rST over Markdown for documentation`_.
+
+For RST, you can use the following tools:
+
+* `Visual Studio Code`_ works pretty well.
+* `Online reStructured Text editor`_ helps, but isn't perfect.
+* `Online table generator`_ (supports multiple formats)
+* `Pandoc`_ can be used to convert between many formats, like Google Doc to rST.
+* Other options are listed on stackoverflow_.
+
+The `reStructuredText (rST) Primer`_ can be a good reference.
+
+.. _Restructured Text (RST): http://docutils.sourceforge.net/rst.html
+.. _Markdown (MD): https://www.markdownguide.org/
+.. _why rST over Markdown for documentation: http://ericholscher.com/blog/2016/mar/15/dont-use-markdown-for-technical-docs/
+.. _Visual Studio Code: https://marketplace.visualstudio.com/items?itemName=tht13.rst-vscode
+.. _Online reStructured Text editor: http://rst.ninjs.org/
+.. _Online table generator: http://truben.no/table/
+.. _Pandoc: https://pandoc.org/
+.. _stackoverflow: https://stackoverflow.com/a/2747041
+.. _reStructuredText (rST) Primer: http://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
+
+
+edX Developer Course
+~~~~~~~~~~~~~~~~~~~~
+
+As depicted in the diagram above, we will dogfood our open edX features and 
+tools to create a maintained edX course for open edX developers. This course 
+will function as both an onboarding tool and an ongoing reference library for
+open edX developers.
+
+The edX course will reference developer documentation and diagrams persisted in
+Github and provide assessments to help the learner digest and retain the
+material.
+
+For ongoing maintainence of the edX course, it will be integrated with Git. To
+dogfood our tools, the course will be authored in Studio.
+
+
 Backward Compatibility
-**********************
+~~~~~~~~~~~~~~~~~~~~~~
 
 We will need to migrate content from deprecated sources such as Confluence. As
 part of the migration, we will need to establish a timetable for deleting
 migrated content and determine a method for redirecting users to the new
 location of the content.
 
-We will need to provide resources and other support so that everyone who needs
-to write documentation using RST is comfortable doing so. We have an existing
-document, the :ref:`edX Style Guide<http://draft-edx-style-
-guide.readthedocs.io/en/latest/index.html>`, which includes a complete
-reference to using RST in the context of documentation produced by the Docs
-team and published on RTD. We can produce a document based on this Style Guide
-that is aimed at users outside the Docs team, and also an RST quick reference.
 
-We should also provide standards and procedures for testing documentation.
+Future considerations
+---------------------
 
-*************************
-Reference Implementations
-*************************
+* Use `Algolia`_ for search.
 
-
-
-======================
-Swagger Implementation
-======================
-
-There is a
-`test implementation<https://stage-edx-analyticsapi.edx.org/docs/>`_ of
-Swagger for the Analytics API.
-
-*********************
-Rejected Alternatives
-*********************
-
-This statement describes any alternative designs or implementations that were
-considered and rejected, and why they were not chosen.
+.. _Algolia: http://algolia.com/
